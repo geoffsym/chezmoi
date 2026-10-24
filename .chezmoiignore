@@ -1,11 +1,13 @@
 # Repository metadata (never copy into $HOME)
-README.md
 LICENSE
+README.md
 
 {{- if not .desktop }}
 # Desktop & gaming configurations
-.config/gamemode.ini
-.config/gamemode-start.sh
-.config/gamemode-end.sh
 .config/MangoHud/
+.config/gamemode-end.sh
+.config/gamemode-start.sh
+.config/gamemode.ini
+.config/konsolerc
+.local/share/konsole/
 {{- end }}

@@ -1,0 +1,25 @@
+[user]
+	email = geoff.sym93@gmail.com
+	name = Geoff Symonds
+[credential "https://git.local.geoff.app"]
+	helper = 
+	helper = !tea login helper
+[safe]
+	directory = /opt/ComfyUI
+	directory = /opt/docker/ai-services
+[init]
+	defaultBranch = main
+[rebase]
+	autosquash = true
+	autostash = true
+[push]
+	default = current
+	autoSetupRemote = true
+[fetch]
+	prune = true
+[diff]
+	algorithm = histogram
+[pull]
+	rebase = true
+[merge]
+	conflictstyle = zdiff3

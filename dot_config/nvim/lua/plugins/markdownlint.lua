@@ -1,0 +1,20 @@
+return {
+  "mfussenegger/nvim-lint",
+  opts = {
+    linters = {
+      ["markdownlint-cli2"] = {
+        args = {
+          "--config",
+          vim.fn.stdpath("config") .. "/.markdownlint.json",
+          "--",
+        },
+      },
+      ["markdownlint"] = {
+        args = {
+          "--config",
+          vim.fn.stdpath("config") .. "/.markdownlint.json",
+        },
+      },
+    },
+  },
+}

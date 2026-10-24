@@ -1,0 +1,23 @@
+#!/bin/bash
+# gamemode-start.sh - Executed when a game starts under GameMode.
+# Stops llama-swap and ComfyUI services if they are running, and records their status.
+
+STATE_FILE="/tmp/gamemode-ai-services-state"
+
+# Ensure the state file is clean
+rm -f "$STATE_FILE"
+
+# Log starting
+echo "$(date): GameMode starting, checking AI services..." >> /tmp/gamemode-hooks.log
+
+# Check and stop services
+for service in llama-swap.service comfyui.service; do
+    if systemctl is-active --quiet "$service"; then
+        echo "$service" >> "$STATE_FILE"
+        echo "Stopping active service: $service" >> /tmp/gamemode-hooks.log
+        sudo systemctl stop "$service"
+    fi
+done
+# Enable VRR (Adaptive Sync) for gaming
+echo "$(date): Enabling VRR for gaming..." >> /tmp/gamemode-hooks.log
+kscreen-doctor output.DP-2.vrrpolicy.always >> /tmp/gamemode-hooks.log 2>&1
