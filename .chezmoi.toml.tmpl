@@ -1,6 +1,6 @@
 {{- $desktop := promptBoolOnce . "desktop" "desktop" -}}
-{{- $local := promptBoolOnce . "local" "local" -}}
+{{- $work := promptBoolOnce . "work" "work" -}}
 
 [data]
     desktop = {{ $desktop }}
-    local = {{ $local }}
+    work = {{ $work }}

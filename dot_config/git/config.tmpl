@@ -1,14 +1,29 @@
 [user]
+{{- if .work }}
+	email = gsymonds@paychex.com
+{{- else }}
 	email = geoff.sym93@gmail.com
+{{- end }}
 	name = Geoff Symonds
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !gh auth git-credential
+{{- if not .work }}
 [credential "https://git.local.geoff.app"]
 	helper = 
 	helper = !tea login helper
 [safe]
-	directory = /opt/ComfyUI
-	directory = /opt/docker/ai-services
+	directory = /opt/*
+{{- end }}
 [init]
 	defaultBranch = main
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
 [rebase]
 	autosquash = true
 	autostash = true

@@ -2,12 +2,12 @@
 
 A portable collection of my personal configuration files and templates, managed with [Chezmoi](https://www.chezmoi.io/).
 
-## Machine Capabilities
+## Machine Flags
 
 On initialization (`chezmoi init`), `.chezmoi.toml.tmpl` prompts for two boolean flags and stores them in `~/.config/chezmoi/chezmoi.toml` under `[data]`:
 
-- **`desktop`** (`true` / `false`): Whether the machine has a graphical desktop environment. When `false`, desktop and gaming configurations (`gamemode`, `MangoHud`, etc.) are ignored via `.chezmoiignore`.
-- **`local`** (`true` / `false`): Whether the machine can reach `*.local.geoff.app` (directly on the homelab network or via VPN). When `false`, templates omit local-only endpoints and use external configurations.
+- **`desktop`** (`true` / `false`): Whether the machine has a graphical desktop environment. When `false`, desktop and gaming configurations (`gamemode`, `MangoHud`, `konsole`) are ignored via `.chezmoiignore`.
+- **`work`** (`true` / `false`): Whether the machine is a corporate work environment. When `true`, templates use work-specific values (e.g., work Git email) and omit homelab-only endpoints (`*.local.geoff.app`).
 
 ## Quick Start
 
@@ -24,7 +24,7 @@ chezmoi init --apply https://git.geoff.app/geoff/chezmoi.git
 
 ### Unattended Bootstrap (`lab-ansible`)
 ```bash
-chezmoi init --apply --promptBool "desktop=false,local=true" https://git.local.geoff.app/geoff/chezmoi.git
+chezmoi init --apply --promptBool "desktop=false,work=false" https://git.local.geoff.app/geoff/chezmoi.git
 ```
 
 ## Common Commands
