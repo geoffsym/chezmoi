@@ -1,0 +1,2 @@
+default_dir = "."
+forward_env = ["COLORTERM", "NERD_FONT", "SSH_AUTH_SOCK", "TERM"]
