@@ -59,11 +59,9 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias wget='wget -c'
 
-# Debian/Ubuntu package name mappings
-if [[ -f /etc/debian_version ]]; then
-  alias bat=batcat
-  alias fd=fdfind
-fi
+# Fallback aliases if only distro-renamed binaries exist
+command -v bat &>/dev/null || { command -v batcat &>/dev/null && alias bat=batcat; }
+command -v fd &>/dev/null || { command -v fdfind &>/dev/null && alias fd=fdfind; }
 
 # Directory listings with eza (conditional on NERD_FONT)
 if [[ -n "$NERD_FONT" ]]; then

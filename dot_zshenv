@@ -4,6 +4,11 @@
 export EDITOR="nano"
 export VISUAL="nano"
 
+# Homebrew environment
+if [[ -d /home/linuxbrew/.linuxbrew/bin ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # PATH adjustments (deduplicated)
 typeset -U path
 path=(
@@ -12,13 +17,12 @@ path=(
   $path
 )
 
-# OS-specific man pager configuration
-if [[ -f /etc/debian_version ]]; then
-  export MANROFFOPT="-c"
-  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-else
-  export MANROFFOPT="-c"
+# Man pager configuration
+export MANROFFOPT="-c"
+if command -v bat &>/dev/null; then
   export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+elif command -v batcat &>/dev/null; then
+  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
 fi
 
 # Machine-specific environment overrides (untracked in version control)
