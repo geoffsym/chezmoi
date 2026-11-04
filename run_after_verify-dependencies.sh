@@ -25,6 +25,7 @@ check_cmd rg
 check_cmd bat batcat
 check_cmd fd fdfind
 check_cmd nvim
+check_cmd fastfetch
 
 # Antidote plugin manager check
 if [[ ! -f /usr/share/zsh-antidote/antidote.zsh && \
