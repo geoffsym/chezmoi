@@ -91,4 +91,10 @@ alias plz=please
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # --- Greeting ---
-command -v fastfetch &>/dev/null && fastfetch
+if command -v fastfetch &>/dev/null; then
+  if [[ -f /proc/device-tree/model ]] && grep -qi "Raspberry Pi" /proc/device-tree/model 2>/dev/null; then
+    fastfetch --logo raspbian
+  else
+    fastfetch
+  fi
+fi
