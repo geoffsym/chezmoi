@@ -1,0 +1,25 @@
+# ~/.zshenv: Sourced for all Zsh invocations (interactive and non-interactive).
+
+# Default editor
+export EDITOR="nano"
+export VISUAL="nano"
+
+# PATH adjustments (deduplicated)
+typeset -U path
+path=(
+  ~/.local/bin
+  ~/.npm-global/bin
+  $path
+)
+
+# OS-specific man pager configuration
+if [[ -f /etc/debian_version ]]; then
+  export MANROFFOPT="-c"
+  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+else
+  export MANROFFOPT="-c"
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
+# Machine-specific environment overrides (untracked in version control)
+[[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
