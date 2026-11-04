@@ -4,14 +4,23 @@
 zplugins_txt=${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 zplugins_zsh=${ZDOTDIR:-$HOME}/.zsh_plugins.zsh
 
-if [[ -f ~/.local/share/antidote/antidote.zsh ]]; then
+antidote_path=""
+if [[ -f /usr/share/zsh-antidote/antidote.zsh ]]; then
+  antidote_path="/usr/share/zsh-antidote/antidote.zsh"
+elif [[ -f /home/linuxbrew/.linuxbrew/opt/antidote/share/antidote/antidote.zsh ]]; then
+  antidote_path="/home/linuxbrew/.linuxbrew/opt/antidote/share/antidote/antidote.zsh"
+elif [[ -f ~/.local/share/antidote/antidote.zsh ]]; then
+  antidote_path="$HOME/.local/share/antidote/antidote.zsh"
+fi
+
+if [[ -n "$antidote_path" ]]; then
   if [[ ! -f $zplugins_zsh || $zplugins_txt -nt $zplugins_zsh ]]; then
-    source ~/.local/share/antidote/antidote.zsh
+    source "$antidote_path"
     antidote bundle < $zplugins_txt > $zplugins_zsh
   fi
   source $zplugins_zsh
 else
-  echo "Notice: Antidote not found at ~/.local/share/antidote. Run 'chezmoi apply' to install."
+  echo "Notice: Antidote not found. Install via 'brew install antidote' or 'paru -S zsh-antidote'."
 fi
 
 # --- Tab Completion ---
