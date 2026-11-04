@@ -14,8 +14,8 @@ elif [[ -f ~/.local/share/antidote/antidote.zsh ]]; then
 fi
 
 if [[ -n "$antidote_path" ]]; then
+  source "$antidote_path"
   if [[ ! -f $zplugins_zsh || $zplugins_txt -nt $zplugins_zsh ]]; then
-    source "$antidote_path"
     antidote bundle < $zplugins_txt > $zplugins_zsh
   fi
   source $zplugins_zsh
