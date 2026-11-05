@@ -92,5 +92,9 @@ alias plz=please
 
 # --- Greeting ---
 if command -v fastfetch &>/dev/null; then
-  fastfetch
+  if (( COLUMNS >= 85 )); then
+    fastfetch
+  else
+    fastfetch --logo-position top
+  fi
 fi
