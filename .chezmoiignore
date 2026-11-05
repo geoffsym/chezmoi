@@ -8,6 +8,7 @@ README.md
 .config/kwinrulesrc
 .local/share/konsole/
 .local/share/kxmlgui5/konsole/
+run_onchange_after_reload-kwin.sh*
 {{- end }}
 
 {{- if and (ne .chezmoi.hostname "deep-thought") (ne .chezmoi.hostname "steamdeck") }}

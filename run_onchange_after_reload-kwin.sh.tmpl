@@ -1,0 +1,8 @@
+#!/bin/sh
+# kwinrulesrc hash: {{ include "dot_config/private_kwinrulesrc" | sha256sum }}
+
+if command -v qdbus6 >/dev/null 2>&1; then
+    qdbus6 org.kde.KWin /KWin reconfigure 2>/dev/null || true
+elif command -v qdbus >/dev/null 2>&1; then
+    qdbus org.kde.KWin /KWin reconfigure 2>/dev/null || true
+fi
