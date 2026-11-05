@@ -1,0 +1,29 @@
+# ~/.config/zsh/.zshenv: Sourced for all Zsh invocations.
+
+# Default editor
+export EDITOR="nano"
+export VISUAL="nano"
+
+# Modular environment drop-ins
+if [[ -d "${ZDOTDIR:-$HOME/.config/zsh}/zshenv.d" ]]; then
+  for file in "${ZDOTDIR:-$HOME/.config/zsh}/zshenv.d"/*.zsh(N); do
+    [[ -r "$file" ]] && source "$file"
+  done
+  unset file
+fi
+
+# PATH adjustments (deduplicated)
+typeset -U path
+path=(
+  ~/.local/bin
+  ~/.npm-global/bin
+  $path
+)
+
+# Man pager configuration
+export MANROFFOPT="-c"
+if command -v bat &>/dev/null; then
+  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+elif command -v batcat &>/dev/null; then
+  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+fi

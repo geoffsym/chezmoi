@@ -1,16 +1,16 @@
-# ~/.zshrc: Sourced for interactive Zsh sessions only.
+# ~/.config/zsh/.zshrc: Sourced for interactive Zsh sessions only.
 
 # --- Antidote Plugin Manager ---
-zplugins_txt=${ZDOTDIR:-$HOME}/.zsh_plugins.txt
-zplugins_zsh=${ZDOTDIR:-$HOME}/.zsh_plugins.zsh
+zplugins_txt=${ZDOTDIR:-$HOME/.config/zsh}/.zsh_plugins.txt
+zplugins_zsh=${ZDOTDIR:-$HOME/.config/zsh}/.zsh_plugins.zsh
 
 antidote_path=""
 if [[ -f /usr/share/zsh-antidote/antidote.zsh ]]; then
   antidote_path="/usr/share/zsh-antidote/antidote.zsh"
 elif [[ -f /home/linuxbrew/.linuxbrew/opt/antidote/share/antidote/antidote.zsh ]]; then
   antidote_path="/home/linuxbrew/.linuxbrew/opt/antidote/share/antidote/antidote.zsh"
-elif [[ -f ~/.local/share/antidote/antidote.zsh ]]; then
-  antidote_path="$HOME/.local/share/antidote/antidote.zsh"
+elif [[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/antidote/antidote.zsh" ]]; then
+  antidote_path="${XDG_DATA_HOME:-$HOME/.local/share}/antidote/antidote.zsh"
 fi
 
 if [[ -n "$antidote_path" ]]; then
@@ -34,7 +34,7 @@ autoload -U promptinit; promptinit
 prompt pure
 
 # --- History Configuration ---
-HISTFILE=~/.zsh_history
+HISTFILE="${ZDOTDIR:-$HOME/.config/zsh}/.zsh_history"
 HISTSIZE=10000
 SAVEHIST=10000
 setopt EXTENDED_HISTORY      # Save timestamps and duration
@@ -53,42 +53,13 @@ bindkey '^[[B' history-substring-search-down
 [[ -n "$terminfo[kcuu1]" ]] && bindkey "$terminfo[kcuu1]" history-substring-search-up
 [[ -n "$terminfo[kcud1]" ]] && bindkey "$terminfo[kcud1]" history-substring-search-down
 
-# --- Aliases ---
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias wget='wget -c'
-
-# Fallback aliases if only distro-renamed binaries exist
-command -v bat &>/dev/null || { command -v batcat &>/dev/null && alias bat=batcat; }
-command -v fd &>/dev/null || { command -v fdfind &>/dev/null && alias fd=fdfind; }
-
-# Directory listings with eza (conditional on NERD_FONT)
-if [[ -n "$NERD_FONT" ]]; then
-  alias ls='eza -al --color=always --group-directories-first --icons'
-  alias la='eza -a --color=always --group-directories-first --icons'
-  alias ll='eza -l --color=always --group-directories-first --icons'
-  alias lt='eza -aT --color=always --group-directories-first --icons'
-else
-  alias ls='eza -al --color=always --group-directories-first'
-  alias la='eza -a --color=always --group-directories-first'
-  alias ll='eza -l --color=always --group-directories-first'
-  alias lt='eza -aT --color=always --group-directories-first'
+# --- Modular Interactive Drop-ins ---
+if [[ -d "${ZDOTDIR:-$HOME/.config/zsh}/zshrc.d" ]]; then
+  for file in "${ZDOTDIR:-$HOME/.config/zsh}/zshrc.d"/*.zsh(N); do
+    [[ -r "$file" ]] && source "$file"
+  done
+  unset file
 fi
-
-# Run previous command with sudo or prefix command with sudo
-function please() {
-  if [[ $# -eq 0 ]]; then
-    eval sudo $(fc -ln -1)
-  else
-    sudo "$@"
-  fi
-}
-alias pls=please
-alias plz=please
-
-# --- Machine-Specific Local Overrides (Untracked) ---
-[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
 # --- Greeting ---
 if command -v fastfetch &>/dev/null; then

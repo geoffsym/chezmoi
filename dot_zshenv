@@ -1,29 +1,3 @@
-# ~/.zshenv: Sourced for all Zsh invocations (interactive and non-interactive).
-
-# Default editor
-export EDITOR="nano"
-export VISUAL="nano"
-
-# Homebrew environment
-if [[ -d /home/linuxbrew/.linuxbrew/bin ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
-# PATH adjustments (deduplicated)
-typeset -U path
-path=(
-  ~/.local/bin
-  ~/.npm-global/bin
-  $path
-)
-
-# Man pager configuration
-export MANROFFOPT="-c"
-if command -v bat &>/dev/null; then
-  export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-elif command -v batcat &>/dev/null; then
-  export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
-fi
-
-# Machine-specific environment overrides (untracked in version control)
-[[ -f ~/.zshenv.local ]] && source ~/.zshenv.local
+# ~/.zshenv: Minimal bootstrap to establish XDG ZDOTDIR
+export ZDOTDIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+[[ -f "$ZDOTDIR/.zshenv" ]] && source "$ZDOTDIR/.zshenv"

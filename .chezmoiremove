@@ -1,0 +1,10 @@
+.zshrc
+.zsh_plugins.txt
+.zsh_plugins.zsh
+.zshenv.local
+.zshrc.local
+.gitconfig
+.config/fish
+.config/kitty
+.config/alacritty
+.config/tmux
