@@ -1,5 +1,6 @@
 #!/bin/bash
 # gamemode-end.sh - Executed when a game exits under GameMode.
+{{- if eq .chezmoi.hostname "deep-thought" }}
 # Restores the state of llama-swap and ComfyUI services if they were running before.
 
 STATE_FILE="/tmp/gamemode-ai-services-state"
@@ -21,3 +22,13 @@ fi
 # Restore fixed 240Hz for desktop to prevent VRR brightness flickering
 echo "$(date): Disabling VRR (restoring fixed refresh rate)..." >> /tmp/gamemode-hooks.log
 kscreen-doctor output.DP-2.vrrpolicy.never >> /tmp/gamemode-hooks.log 2>&1
+{{- else if eq .chezmoi.hostname "steamdeck" }}
+# Restores Lemonade if it was running before the game launched.
+
+STATE_FILE="/tmp/gamemode-lemonade-running"
+
+if [ -f "$STATE_FILE" ]; then
+    rm -f "$STATE_FILE"
+    systemctl --user start lemonade.service
+fi
+{{- end }}

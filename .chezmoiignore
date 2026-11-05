@@ -3,11 +3,16 @@ LICENSE
 README.md
 
 {{- if not .desktop }}
-# Desktop & gaming configurations
-.config/MangoHud/
+# Desktop configurations
+.config/konsolerc
+.local/share/konsole/
+{{- end }}
+
+{{- if and (ne .chezmoi.hostname "deep-thought") (ne .chezmoi.hostname "steamdeck") }}
+# Gaming configurations
+.config/environment.d/gamemode.conf
 .config/gamemode-end.sh
 .config/gamemode-start.sh
 .config/gamemode.ini
-.config/konsolerc
-.local/share/konsole/
+.config/MangoHud/
 {{- end }}

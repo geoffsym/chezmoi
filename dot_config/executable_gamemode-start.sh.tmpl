@@ -1,5 +1,6 @@
 #!/bin/bash
 # gamemode-start.sh - Executed when a game starts under GameMode.
+{{- if eq .chezmoi.hostname "deep-thought" }}
 # Stops llama-swap and ComfyUI services if they are running, and records their status.
 
 STATE_FILE="/tmp/gamemode-ai-services-state"
@@ -21,3 +22,14 @@ done
 # Enable VRR (Adaptive Sync) for gaming
 echo "$(date): Enabling VRR for gaming..." >> /tmp/gamemode-hooks.log
 kscreen-doctor output.DP-2.vrrpolicy.always >> /tmp/gamemode-hooks.log 2>&1
+{{- else if eq .chezmoi.hostname "steamdeck" }}
+# Stops Lemonade if it is running to free RAM & APU for gaming.
+
+STATE_FILE="/tmp/gamemode-lemonade-running"
+rm -f "$STATE_FILE"
+
+if systemctl --user is-active --quiet lemonade.service; then
+    touch "$STATE_FILE"
+    systemctl --user stop lemonade.service
+fi
+{{- end }}
