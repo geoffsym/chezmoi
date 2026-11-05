@@ -1,0 +1,4 @@
+# Global gitignore managed by chezmoi
+.env
+.scratch
+.scratch/*
