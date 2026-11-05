@@ -1,0 +1,12 @@
+[General]
+Order=konsole-maximized
+
+[konsole-maximized]
+Description=Maximize Konsole
+maximizehoriz=true
+maximizehorizrule=2
+maximizevert=true
+maximizevertrule=2
+types=1
+wmclass=org.kde.konsole
+wmclassmatch=1

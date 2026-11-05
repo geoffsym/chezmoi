@@ -5,7 +5,9 @@ README.md
 {{- if not .desktop }}
 # Desktop configurations
 .config/konsolerc
+.config/kwinrulesrc
 .local/share/konsole/
+.local/share/kxmlgui5/konsole/
 {{- end }}
 
 {{- if and (ne .chezmoi.hostname "deep-thought") (ne .chezmoi.hostname "steamdeck") }}

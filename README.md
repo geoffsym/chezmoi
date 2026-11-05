@@ -26,6 +26,7 @@ Upon running `chezmoi apply`, an included verification script checks for recomme
 | **`neovim`** | Modal text editor (`nvim`) | `neovim` | `neovim` |
 | **`fastfetch`** | System information fetcher | `fastfetch` | `fastfetch` |
 | **`shpool`** | Shell session persistence daemon | `shpool` | `shpool` (AUR) |
+| **`firacode-nerd`** | Monospace terminal font (`desktop=true`) | *(Manual on Linux)* | `ttf-firacode-nerd` |
 
 ### Quick Install One-Liners
 
@@ -39,6 +40,11 @@ brew install chezmoi eza fzf ripgrep bat fd neovim fastfetch antidote shpool
 ```bash
 sudo pacman -S zsh chezmoi eza fzf ripgrep bat fd neovim fastfetch
 paru -S zsh-antidote shpool
+```
+
+**Desktop Packages (`desktop=true` on Arch):**
+```bash
+sudo pacman -S ttf-firacode-nerd
 ```
 
 ## Quick Start
