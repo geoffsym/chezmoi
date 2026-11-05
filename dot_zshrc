@@ -92,9 +92,5 @@ alias plz=please
 
 # --- Greeting ---
 if command -v fastfetch &>/dev/null; then
-  if [[ -f /proc/device-tree/model ]] && grep -qi "Raspberry Pi" /proc/device-tree/model 2>/dev/null; then
-    fastfetch --logo raspbian
-  else
-    fastfetch
-  fi
+  fastfetch
 fi
