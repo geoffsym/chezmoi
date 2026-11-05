@@ -7,6 +7,12 @@
     "type": "file-raw",
     "source": "{{ .chezmoi.homeDir }}/.config/fastfetch/omv.ansi"
   },
+  "display": {
+    "color": {
+      "keys": "38;5;74",
+      "title": "38;5;74"
+    }
+  },
 {{- else if $is_rpi }}
   "logo": {
     "source": "raspbian"
