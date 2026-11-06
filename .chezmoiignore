@@ -19,3 +19,13 @@ reload-kwin.sh
 .config/gamemode.ini
 .config/MangoHud/
 {{- end }}
+
+{{- if .work }}
+# Personal AI agent configurations (Antigravity CLI is personal/homelab only)
+.gemini/
+{{- else }}
+# Corporate AI agent configurations (Claude Code is work only)
+.claude/
+.claude.json
+{{- end }}
+

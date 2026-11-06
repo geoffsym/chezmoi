@@ -1,0 +1,21 @@
+{
+  "httpIdleTimeoutMs": 0,
+  {{- if not .work }}
+  "retry": {
+    "provider": {
+      "timeoutMs": 3600000
+    }
+  },
+  {{- end }}
+  "packages": [
+    {{- if not .work }}
+    "npm:@danielmeneses/pi-llama-swap",
+    {{- end }}
+    "npm:pi-web-access"
+  ],
+  "hideThinkingBlock": true,
+  "theme": "dark"{{- if not .work }},
+  "defaultProvider": "llama-swap",
+  "defaultModel": "qwen3.6-35b-a3b-q8-256k"
+  {{- end }}
+}

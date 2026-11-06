@@ -26,6 +26,9 @@ Upon running `chezmoi apply`, an included verification script checks for recomme
 | **`neovim`** | Modal text editor (`nvim`) | `neovim` | `neovim` |
 | **`fastfetch`** | System information fetcher | `fastfetch` | `fastfetch` |
 | **`shpool`** | Shell session persistence daemon | `shpool` | `shpool` (AUR) |
+| **`pi`** | Terminal coding agent | `pi-coding-agent` | `pi-coding-agent-bin` (AUR) |
+| **`agy`** | Antigravity AI terminal agent (`work=false`) | `antigravity-cli` | `antigravity-cli` (AUR) |
+| **`claude`** | Claude Code AI terminal assistant (`work=true`) | `claude-code` | — |
 | **`firacode-nerd`** | Monospace terminal font (`desktop=true`) | *(Manual on Linux)* | `ttf-firacode-nerd` |
 
 ### Quick Install One-Liners
@@ -33,13 +36,19 @@ Upon running `chezmoi apply`, an included verification script checks for recomme
 **Debian-Based Distros (Ubuntu, Debian, WSL):**
 ```bash
 sudo apt update && sudo apt install zsh
-brew install chezmoi eza fzf ripgrep bat fd neovim fastfetch antidote shpool
+brew install chezmoi eza fzf ripgrep bat fd neovim fastfetch antidote shpool pi-coding-agent
+
+# Personal / homelab nodes:
+brew install antigravity-cli
+
+# Corporate work nodes (work=true):
+brew install --cask claude-code
 ```
 
 **Arch-Based Distros (Pacman + Paru):**
 ```bash
 sudo pacman -S zsh chezmoi eza fzf ripgrep bat fd neovim fastfetch
-paru -S zsh-antidote shpool
+paru -S zsh-antidote shpool pi-coding-agent-bin antigravity-cli
 ```
 
 **Desktop Packages (`desktop=true` on Arch):**

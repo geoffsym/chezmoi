@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+{{- if not .work }}
+    "lab-mcp": {
+      "url": "https://lab-mcp.local.geoff.app/mcp"
+    },
+    "vikunja": {
+      "url": "https://vikunja.local.geoff.app/api/v2/mcp",
+      "headers": {
+        "Authorization": "Bearer ${PI_VIKUNJA_TOKEN}"
+      }
+    }
+{{- end }}
+  }
+}
