@@ -1,13 +1,15 @@
 SendEnv NERD_FONT
 
-{{- if not .work }}
+{{- if .work }}
+Host *
+    User gsymonds
+{{- else}}
+Host steamdeck
+    User deck
+
 Host pi-home
     User automation
-{{- end }}
 
 Host *
-{{- if .work }}
-    User gsymonds
-{{- else }}
     User geoff
 {{- end }}
