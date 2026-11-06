@@ -4,7 +4,3 @@
 .zshenv.local
 .zshrc.local
 .gitconfig
-.config/fish
-.config/kitty
-.config/alacritty
-.config/tmux
