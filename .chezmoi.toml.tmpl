@@ -1,6 +1,8 @@
 {{- $desktop := promptBoolOnce . "desktop" "desktop" -}}
 {{- $work := promptBoolOnce . "work" "work" -}}
 
+umask = 0o022
+
 [data]
     desktop = {{ $desktop }}
     work = {{ $work }}
