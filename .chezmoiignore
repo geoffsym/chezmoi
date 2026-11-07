@@ -20,9 +20,16 @@ reload-kwin.sh
 .config/MangoHud/
 {{- end }}
 
+{{- if or .work (eq .chezmoi.hostname "deep-thought") }}
+# Remote LLM endpoint only needed on remote nodes, not local workstation or work
+.config/zsh/zshenv.d/llama-swap.zsh
+{{- end }}
+
 {{- if .work }}
 # Personal AI agent configurations (Antigravity CLI is personal/homelab only)
 .gemini/
+.pi/agent/mcp.json
+.pi/agent/web-search.json
 {{- else }}
 # Corporate AI agent configurations (Claude Code is work only)
 .claude/
