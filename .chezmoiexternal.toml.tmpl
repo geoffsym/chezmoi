@@ -1,0 +1,18 @@
+{{- /* Shared skills installed across all environments (work and personal/homelab) */ -}}
+{{- $skills := list
+-}}
+
+{{- /* Homelab/personal skills installed only when work = false */ -}}
+{{- if not .work -}}
+{{-   $skills = concat $skills (list
+    "https://git.local.geoff.app/geoff/vikunja-task-checking.git"
+  ) -}}
+{{- end -}}
+
+{{- range $url := $skills }}
+{{-   $name := base $url | trimSuffix ".git" }}
+[".agents/skills/{{ $name }}"]
+    type = "git-repo"
+    url = {{ $url | quote }}
+    refreshPeriod = "168h"
+{{- end }}
