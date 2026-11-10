@@ -1,5 +1,5 @@
 sindresorhus/pure kind:fpath
+ohmyzsh/ohmyzsh path:lib/key-bindings.zsh
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-syntax-highlighting
-zsh-users/zsh-history-substring-search
 hlissner/zsh-autopair

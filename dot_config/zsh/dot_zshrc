@@ -46,13 +46,6 @@ setopt HIST_FIND_NO_DUPS     # Don't show duplicates when searching
 setopt HIST_REDUCE_BLANKS    # Tidy superfluous whitespace
 setopt HIST_VERIFY           # Show expanded history (e.g. !!) before running
 
-# --- Keybindings ---
-bindkey ' ' magic-space  # Expands !! automatically on space
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-[[ -n "$terminfo[kcuu1]" ]] && bindkey "$terminfo[kcuu1]" history-substring-search-up
-[[ -n "$terminfo[kcud1]" ]] && bindkey "$terminfo[kcud1]" history-substring-search-down
-
 # --- Modular Interactive Drop-ins ---
 if [[ -d "${ZDOTDIR:-$HOME/.config/zsh}/zshrc.d" ]]; then
   for file in "${ZDOTDIR:-$HOME/.config/zsh}/zshrc.d"/*.zsh(N); do
