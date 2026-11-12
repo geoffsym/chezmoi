@@ -26,7 +26,8 @@ reload-kwin.sh
 {{- end }}
 
 {{- if .work }}
-# Personal AI agent configurations (Antigravity CLI is personal/homelab only)
+# Personal AI agent and homelab configurations (personal/homelab only)
+.config/gitea-cli/
 .gemini/
 .pi/agent/mcp.json
 .pi/agent/web-search.json

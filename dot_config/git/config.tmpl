@@ -14,7 +14,8 @@
 {{- if not .work }}
 [credential "https://git.local.geoff.app"]
 	helper = 
-	helper = !tea login helper
+	useHttpPath = true
+	helper = !GITEA_CLI_CONFIG_DIR={{ .chezmoi.homeDir }}/.config/gitea-cli /usr/bin/gt auth git-credential --host https://git.local.geoff.app
 [safe]
 	directory = /opt/*
 {{- end }}

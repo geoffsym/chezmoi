@@ -1,0 +1,11 @@
+version: "1"
+hosts:
+    https://git.local.geoff.app:
+        user: geoff
+        ssh_host: git.local.geoff.app:2222
+        git_protocol: ssh
+        oauth_client_id: d57cb8c4-630c-4168-8324-ec79935e18d4
+        users:
+            geoff:
+                auth_method: oauth
+                credential_store: keyring
