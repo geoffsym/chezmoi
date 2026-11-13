@@ -11,15 +11,7 @@ MANAGED=$(cat << 'EOF'
 EOF
 )
 
-# Deep merge managed keys, union array permissions and workspaces, and recursively prune nulls
+# Deep merge managed keys onto existing file and recursively prune nulls
 echo "$CURRENT" | jq --argjson managed "$MANAGED" '
-  $ARGS.named.managed as $m |
-  (
-    (.permissions.allow // []) as $orig_allow |
-    (.trustedWorkspaces // []) as $orig_ws |
-    (. * $m) |
-    .permissions.allow = (($orig_allow + ($m.permissions.allow // [])) | unique) |
-    .trustedWorkspaces = (($orig_ws + ($m.trustedWorkspaces // [])) | unique)
-  )
-  | walk(if type == "object" then with_entries(select(.value != null)) else . end)
+  ($ARGS.named.managed as $m | . * $m) | walk(if type == "object" then with_entries(select(.value != null)) else . end)
 '

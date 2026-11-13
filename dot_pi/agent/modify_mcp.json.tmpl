@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+
+# Read current on-disk file from stdin (or empty JSON if file does not exist)
+CURRENT=$(cat)
+[ -z "$CURRENT" ] && CURRENT="{}"
+
+# Render the managed partial JSON from .chezmoitemplates
+MANAGED=$(cat << 'EOF'
+{{ includeTemplate ".chezmoitemplates/pi/mcp.json.tmpl" . }}
+EOF
+)
+
+# Deep merge managed keys onto existing file and recursively prune nulls
+echo "$CURRENT" | jq --argjson managed "$MANAGED" '
+  ($ARGS.named.managed as $m | . * $m) | walk(if type == "object" then with_entries(select(.value != null)) else . end)
+'
