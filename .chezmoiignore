@@ -20,6 +20,11 @@ reload-kwin.sh
 .config/MangoHud/
 {{- end }}
 
+{{- if ne .chezmoi.hostname "deep-thought" }}
+# Workstation-only: disable KWallet in favor of gnome-keyring
+.config/kwalletrc
+{{- end }}
+
 {{- if or .work (eq .chezmoi.hostname "deep-thought") }}
 # Remote LLM endpoint only needed on remote nodes, not local workstation or work
 .config/zsh/zshenv.d/llama-swap.zsh
