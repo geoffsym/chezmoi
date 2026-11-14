@@ -1,6 +1,10 @@
 [General]
+{{- if eq .chezmoi.hostname "steamdeck" }}
 count=1
 rules=konsole-maximized
+{{- else }}
+Order=konsole-maximized
+{{- end }}
 
 [konsole-maximized]
 Description=Maximize Konsole
