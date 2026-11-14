@@ -11,7 +11,7 @@ MANAGED=$(cat << 'EOF'
 EOF
 )
 
-# Deep merge managed keys onto existing file and recursively prune nulls
-echo "$CURRENT" | jq --argjson managed "$MANAGED" '
+# Deep merge managed keys onto existing file and recursively prune nulls (no trailing newline to match Pi)
+printf '%s' "$(echo "$CURRENT" | jq --argjson managed "$MANAGED" '
   ($ARGS.named.managed as $m | . * $m) | walk(if type == "object" then with_entries(select(.value != null)) else . end)
-'
+')"
