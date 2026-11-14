@@ -62,3 +62,10 @@ if command -v fastfetch &>/dev/null; then
     fastfetch --logo-position top
   fi
 fi
+{{- if eq .chezmoi.hostname "deep-thought" }}
+
+# --- Headless Keyring Unlock ---
+if [[ $(busctl --user --auto-start=no get-property org.freedesktop.secrets /org/freedesktop/secrets/aliases/default org.freedesktop.Secret.Collection Locked 2>/dev/null) != "b false" ]]; then
+  systemd-ask-password -n "Keyring is locked. Password:" | gnome-keyring-daemon --unlock >/dev/null
+fi
+{{- end }}
