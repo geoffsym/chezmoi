@@ -14,8 +14,10 @@ Parent=FALLBACK/
 RemoteTabTitleFormat=%H : %w
 
 [Interaction Options]
+AllowEscapedLinks=true
 ClearSelectionOnCopy=true
 CopyTextAsHTML=false
+OpenLinksByDirectClickEnabled=true
 RightClickPasteMode=0
 TrimTrailingSpacesInSelectedText=true
 
