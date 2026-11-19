@@ -14,5 +14,6 @@
 [".agents/skills/{{ $name }}"]
     type = "git-repo"
     url = {{ $url | quote }}
-    refreshPeriod = "168h"
+    # Omitting refreshPeriod (default 0) disables automatic pulls; 1s forces refresh on every update/apply
+    refreshPeriod = "1s"
 {{- end }}
